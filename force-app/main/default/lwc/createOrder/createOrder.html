@@ -1,0 +1,67 @@
+<template>
+    <lightning-card >
+        <h3 slot="title">
+            Create Order
+        </h3>
+
+        <div class="slds-p-around_small lgc-bg">
+            <lightning-input 
+                type="text"
+                name="Name" 
+                value={name} 
+                onchange={handleSetNameChange} 
+                placeholder="type the name of order..." 
+                label="Name"
+                required>
+            </lightning-input>
+
+            <lightning-input 
+                type="text" 
+                name="Total Price" 
+                value={totalPrice} 
+                onchange={handleSetTotalPriceChange} 
+                placeholder="type the price of order..." 
+                label="Total Price"
+                step="0.25">
+            </lightning-input>
+
+            <lightning-combobox
+                name="PaymentType"
+                label="Payment Type"
+                value={currentPaymentType}
+                placeholder="Select Progress"
+                options={paymentTypes}
+                onchange={handleSetPaymentType} >
+            </lightning-combobox>
+        
+            <lightning-combobox
+                name="PaymentPeriod"
+                label="Payment Period"
+                value={currentPaymentPeriod}
+                placeholder="Select Progress"
+                options={paymentPeriods}
+                onchange={handleSetPaymentPeriod} 
+                disabled={handleDisablePicklist}>
+            </lightning-combobox>
+            
+            <div class="slds-p-top_xx-small">
+                <label class="slds-form-element__label" for="text-input-id-92">
+                    <abbr class="slds-required" title="required">* </abbr>
+                    <span style="color: rgb(68, 68, 68);">Account</span>
+                </label>
+                
+                
+                <c-lookup-account obj-name="Account" search-placeholder="Search Accounts" icon-name="standard:account" onlookupselected={handleSetAccountField}> </c-lookup-account>
+            </div>
+
+            <div class="slds-p-top_small">
+                <lightning-button
+                    class="slds-m-top_small"
+                    type="submit"
+                    label="Save"
+                    onclick={handleSave}>
+                </lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>
