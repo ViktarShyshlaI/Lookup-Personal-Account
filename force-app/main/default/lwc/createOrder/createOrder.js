@@ -15,6 +15,7 @@ export default class CreateOrder extends LightningElement {
     foundAccountId;
 
     disablePicklist = true;
+    isValidFields = true;
 
     get handleDisablePicklist() {
         return this.disablePicklist;
@@ -53,17 +54,22 @@ export default class CreateOrder extends LightningElement {
     }  
 
     validateFields() {
-        let isValid = true;
+        this.isValidFields = true;
         this.template.querySelectorAll('lightning-input').forEach(element => {
             if (!element.checkValidity()) {
                 element.reportValidity();
-                isValid = false;
+                this.isValidFields = false;
             }
         });
 
         this.template.querySelector('c-lookup-account').checkIsValid();
         
-        return isValid;
+        return this.isValidFields;
+    }
+
+    handlerCheckAccountField(event)
+    {
+        this.isValidFields = event.detail.valid;
     }
 
     async handleSave() {

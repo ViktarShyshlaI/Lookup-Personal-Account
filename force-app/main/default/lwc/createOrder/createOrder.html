@@ -16,13 +16,14 @@
             </lightning-input>
 
             <lightning-input 
-                type="text" 
+                type="number" 
                 name="Total Price" 
+                formatter="decimal"
                 value={totalPrice} 
                 onchange={handleSetTotalPriceChange} 
                 placeholder="type the price of order..." 
                 label="Total Price"
-                step="0.25">
+                step="any">
             </lightning-input>
 
             <lightning-combobox
@@ -51,7 +52,12 @@
                 </label>
                 
                 
-                <c-lookup-account obj-name="Account" search-placeholder="Search Accounts" icon-name="standard:account" onlookupselected={handleSetAccountField}> </c-lookup-account>
+                <c-lookup-account obj-name="Account" 
+                                  search-placeholder="Search Accounts" 
+                                  icon-name="standard:account" 
+                                  onlookupselected={handleSetAccountField} 
+                                  onvaluecheck={handlerCheckAccountField}> 
+                </c-lookup-account>
             </div>
 
             <div class="slds-p-top_small">

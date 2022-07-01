@@ -57,14 +57,17 @@ export default class LookupAccount extends LightningElement {
     }
 
     @api checkIsValid() {
-        let isValid = true;
         this.template.querySelectorAll('lightning-input').forEach(element => {
             if (!element.checkValidity()) {
                 element.reportValidity();
-                isValid = false;
-                console.log('checkIsValid method');
+                const customEventCheck = new CustomEvent("valuecheck", {        
+                    detail: { valid: false }
+                });
+                this.dispatchEvent(customEventCheck);  
             }
-        });
+            });
     }
+
+
 
 }
